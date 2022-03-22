@@ -26,7 +26,7 @@
     }
  } 
 
-//check which elements are in a descending order
+//check which elements are in a descending order..
 
 
 
