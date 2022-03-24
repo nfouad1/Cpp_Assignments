@@ -13,13 +13,13 @@ void Swap(int *X, int *Y)
 }
 void BubbleSort(int arr[], int n)
 {
-    int i, j;
-    std::cout<<"Array sorted: \n";
-    for (i = 0; i < n-1; i++) { 
+    int i, j, MinValue;
     
+    for (i = 0; i < n-1; i++) { 
         for (j = 0; j < n-i-1; j++){
             if (arr[j] > arr[j+1])
                 Swap(&arr[j], &arr[j+1]);
+               
         }
     } 
 }     
@@ -36,6 +36,7 @@ int main()
     int arr[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11};
     int n = sizeof(arr)/sizeof(arr[0]);
     BubbleSort(arr, n);
+    std::cout<<"Array sorted: " << std::endl;
     PrintOut(arr, n);  
 
     return 0;
