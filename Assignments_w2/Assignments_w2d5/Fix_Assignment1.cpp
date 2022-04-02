@@ -12,6 +12,7 @@ int *fillArray() {
     for (; i > 0; --i) {
         a[i] = function();        
     }
+    delete [] a;
     return a;    
 }
 void printArray(int a[SIZE]) {        
@@ -20,15 +21,15 @@ void printArray(int a[SIZE]) {
     }    
 }
 void printBool (bool _b) {
-    if (_b = true) {
-        std::cout << "VALUE is TRUE" << std::endl;        
-    } else if (_b = false)    {
+    if (_b == true) {
+        std::cout << "VALUE is TRUE " <<std::endl;        
+    } else if (_b == false)    {
         std::cout << "VALUE is FALSE" << std::endl;        
     }    
 }
 // YOU ARE NOT ALLOWED TO CHANGE THE RETURN TYPE
 void resizeForMe(char *a, size_t _newSize) {
-    delete a;
+   // delete [] a;
     a = new char[_newSize];
 }
 
