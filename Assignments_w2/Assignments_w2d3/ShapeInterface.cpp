@@ -9,6 +9,7 @@
 #include <iostream>
 #include <cmath>
 #include <cassert>
+#include <assert.h>
 using namespace std;
 
 class Shape
@@ -125,10 +126,21 @@ class circle : public Shape{
 };
 int main (){
 
-    rectangle Obj_r1{2,3};
-    triangle Obj_t1{2,1,3};
-    square Obj_s1{5};
-    circle Obj_c1{4};
+    double a , b, c;
+    cout<<"Enter three integer values for areas of the shapes: " <<endl;
+    cin >> a  >> b >> c;
+  
+    //check if the user entered positiv values
+    assert(a > 0);
+    cout << "First value is positiv"<<endl;
+    assert(b > 0);
+    cout << "Second value is positiv"<<endl;
+    assert(c > 0);
+    cout << "Third value is positiv"<<endl;
+    rectangle Obj_r1{a,b};
+    triangle Obj_t1{a,b,c};
+    square Obj_s1{a};
+    circle Obj_c1{a};
   /*  Obj_r1.printArea();
     Obj_t1.printArea();
     Obj_s1.printArea();
