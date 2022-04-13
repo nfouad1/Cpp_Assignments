@@ -12,6 +12,7 @@
 #include <assert.h>
 using namespace std;
 
+
 class Shape
 {
 private:
@@ -24,7 +25,7 @@ public:
             s_area = 0; s_perimeter = 0;
         }
     Shape (){};
-    // Pure virtual area function so that child classes have to do implemention on area and perimeter.
+    // Virtual area function so that child classes have to do implemention on area and perimeter.
     virtual double area() {cout <<"functions from base class"<<endl;}
     virtual double perimeter() {cout <<"functions from base class"<<endl;}
     
@@ -36,7 +37,12 @@ public:
     void printArea(){
         cout << this->area()<<endl;
     }
+   
+    
+
 };
+
+
  //operator overloading functions for >=, <= and ==
      bool operator>(Shape& area_1, Shape& area_2){    
         return (area_1.area() > area_2.area()); 
@@ -106,6 +112,7 @@ class square : public Shape{
             return 4*this->width;
         }
 };
+
 class circle : public Shape{
     private:
         double radius;
@@ -124,6 +131,19 @@ class circle : public Shape{
 
         }
 };
+template <typename T1>
+    bool isBigger (initializer_list<T1> list){
+        T1 max_area;
+        for (auto i : list)
+        {
+            if (i.area() > max_area.area())
+            max_area = i;
+            return true;
+        }
+        return false;
+         
+    }
+
 int main (){
 
     double a , b, c;
@@ -141,6 +161,9 @@ int main (){
     triangle Obj_t1{a,b,c};
     square Obj_s1{a};
     circle Obj_c1{a};
+    Shape* area1 = &Obj_s1;
+    Shape* area2 = &Obj_r1;
+
   /*  Obj_r1.printArea();
     Obj_t1.printArea();
     Obj_s1.printArea();
@@ -149,7 +172,6 @@ int main (){
     Obj_t1.printPerimeter();
     Obj_s1.printPerimeter();
     Obj_c1.printPerimeter();*/
-
     // Rectangel
     cout << "Rectangle area > Triangle area: " << (Obj_r1 > Obj_t1) << endl;
     cout << "Rectangle area = Triangle area: " << (Obj_r1 == Obj_t1) << endl;
@@ -160,7 +182,6 @@ int main (){
     cout << "Rectangle area > Cirkel area: " << (Obj_r1 > Obj_c1) << endl;
     cout << "Rectangle area = Cirkel area: " << (Obj_r1 == Obj_c1) << endl;
     cout << "Rectangle area < Cirkel area: " << (Obj_r1 < Obj_c1) << endl;
-
     // Triangle
     cout << "Triangle area > Square area: " << (Obj_t1 > Obj_s1) << endl;
     cout << "Triangle area = Square area: " << (Obj_t1 == Obj_s1) << endl;
@@ -168,6 +189,8 @@ int main (){
     cout << "Triangle area > Cirkel area: " << (Obj_t1 > Obj_c1) << endl;
     cout << "Triangle area = Cirkel area: " << (Obj_t1 == Obj_c1) << endl;
     cout << "Triangle area < Cirkel area: " << (Obj_t1 < Obj_c1) << endl;
+    //function template
+    cout <<"Result from function template: "<< isBigger<Shape>({*area1, *area2})<<endl;
 
     return 0;
 }
