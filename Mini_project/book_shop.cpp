@@ -1,17 +1,7 @@
-/*A book shop maintains the inventory of books that are being sold at the shop. The list includes details such as
-author, title, price, publisher and number of copies. Whenever a customer wants a book, the sales person
-inputs the title and author and the system searches the list and displays whether it is available or not. If it is not,
-an appropriate message is displayed. During the buying process the system displays the book details and
-requests for the number of copies required. If the requested copies are available, the total cost of the requested
-copies is displayed; otherwise the message “Required copies not in stock” is displayed.
-Design a system using a class called books with suitable member functions and Constructors. Use new operator
-in constructors to allocate memory space required. Implement C++ program for the system.*/
-// create functions for: enrty new book, buy a book, search for a book, get details of book .....
-
 #include <iostream>
+#include <vector>
 #include <string>
-
-#define arr_size 50
+#include <algorithm>
 
 using namespace std;
 
@@ -19,155 +9,160 @@ enum menu {
     New = 1, Buy = 2, Search = 3, Details = 4, Exit = 5
 
 };
-class Books{
-    private: 
-        string author;
-        string title;
-        string publisher;
-        float *price;
-        int *copies;
-        int *in_stock;  
-            
-    public:
-        int NrOfRecords; 
-        Books(){
-        //dynamic memory allocation will return a pointer to the first element of the array in the memory (heap).
-        string *author = new string[arr_size];
-        string *title = new string[arr_size];
-        string *publisher = new string[arr_size];
-        price = new float[arr_size];
-        copies = new int[arr_size];
-        in_stock = new int[arr_size];
-        NrOfRecords = 0;
-        cout << "Books constructor!!"<< endl;
-     };
-   /*  //destrtuctor which include freeing up the heap memory allocated.
-    ~Books(){
-        delete[] author;
-        delete[] title;
 
-       cout << "Books deconstructor!!"<< endl;
-    };*/
-    //functions to set data from user input
-    void  setAuthorName(string author);
-    void  setTitle(string title);
-    void  setPublisher(string publisher);
-    void  setPrice(float *price);
-    void  setCopies(int *copies);
-    //functions to read data 
-    string getAuthorName();
-    string getTitle();
-    string getPublisher();
-    void getInputDisplay();
+class Books
+{
+    
+public:
+    //constructors
+    Books();
+    ~Books();
+    vector<string> authornames;
+    vector<string> booktitles;
+    vector<string> publishernames;
+    vector<float> bookprices{};
+    vector<int> bookcopies;
+    string name;
+    string title;
+    string publisher;
+    float price;
+    int copies;
+    int NrOfbooks;
 
-    float getPrice();
-    int getCopies();
-    // fucntions to buy a book, search for a book and get the details of a book.
+    //setter methods
+    void setAuthorName(string name);
+    void setTitleName(string title);
+    void setPublisher(string publisher);
+    void setBookPrice(float price);
+    void setCopies(int copies);
+   // void DisplayInfo();
+    void getUserInfo();
     void buyBook();
-    void searchBook();
-    void bookDetail();
-   
-
+    //getter methods
+    bool searchAuthorname(string bookname);
+    bool searchTitlename(string booktitle);
+    bool searchInStock(int inStock);
+    int getBookPrice();
+    
 };
-void Books::setAuthorName(string author){
-    this->author = author;
-    cout << "From setAuthorName = "<< this->author<<endl;
-    
+Books::Books(){}
+Books::~Books(){}
+
+void Books::setAuthorName(string name){
+    this->authornames.push_back(name);  
 }
-void Books::setTitle(string title){
-    cout << "From setTitle = "<< this->title<<endl;
-    this->title = title;
-    
+void Books::setTitleName(string title){
+    this->booktitles.push_back(title);
 }
 void Books::setPublisher(string publisher){
-    cout << "From setPublisher = "<< this->publisher<<endl;
-    this->publisher = publisher;
+    this->publishernames.push_back(publisher);
+}
+void Books::setBookPrice(float price){
+    this->bookprices.push_back(price);
+}
+void Books::setCopies(int copies){
+    this->bookcopies.push_back(copies);
+}
+int Books::getBookPrice(){
+    cout << "Output of begin and end: ";
+    for (auto i = bookprices.begin(); i != bookprices.end(); ++i)
+        cout << *i << " ";
     
 }
-void Books::setPrice(float *price){
-    this->price  = price;
-    cout << "From setPrice = "<< *(this->price)<<endl;
+bool Books::searchAuthorname(string bookname){
+   string _name;
+   _name = bookname;
+   if (find(authornames.begin(), authornames.end(), _name) != authornames.end()){
+        cout <<"authorname is found!"<< endl;
+        return true;
+   }
+   else {
+        cout<<"authorname is NOT found!"<<endl;
+        return false;
+    }
+   
 }
+bool Books::searchTitlename(string booktitle){
+    string _title;
+    _title = title;
+    if (find(booktitles.begin(), booktitles.end(), _title) != booktitles.end()){
+        cout <<"Title is found!"<< endl;
+        return true;
+   }
+   else {
+        cout<<"Title is NOT found!"<<endl;
+        return false;
+    }
 
-void Books::setCopies(int *copies){
-    this->copies  = copies;
-    cout << "From setCopies = "<< *(this->copies)<<endl;
 }
-void Books::getInputDisplay(){
-       
-       Books new_book;
-            cin.ignore(); // used to not get an ending loop caused by that cin leaves an end of line which is then read by getline().
-            cout << "Enter Author Name: " << endl;
-            getline(cin, author); 
-            new_book.setAuthorName(author);  
-            cout << "Enter Title Name: " << endl;
-            getline(cin, title);new_book.setTitle(title);
-            cout << "Enter Publisher Name: " << endl;
-            getline(cin, publisher); new_book.setPublisher(publisher);
-            cout << "Enter Price: " << endl;
-            cin >> *price; new_book.setPrice(price);
-            cout << "Price is = "<< *(this->price) <<endl;
-            cout << "Enter number of copies: " << endl;    
-            cin >> *copies; new_book.setCopies(copies);
-            cout << endl;
-            
+bool Books::searchInStock(int inStock){
+    int _inStock;
+    _inStock = inStock;
+   // 
+    std::vector<int>::iterator it =(find(bookcopies.begin(), bookcopies.end(), _inStock) );
+    if(it != bookcopies.end()){
+        cout <<"inStock request recieved from buy function1: "<< _inStock<<endl;
+        cout <<"Available in stock!"<< endl;
+        int index = std::distance(bookcopies.begin(), it);
+        std::cout <<"Index of element in vector : "<<index<<std::endl;
+        return true;
+   }
+   else {cout <<"inStock request recieved from buy function2: "<< _inStock<<endl;
+        cout<<"NOT available in stock!"<<endl;
+        return false;
+    }
 }
-string Books::getAuthorName(){
-    cout << "from getAuthorName: "<< author<<endl;
-    return this->author ;
-}
-string Books::getTitle(){
-    return this->title;
-}
-string Books::getPublisher(){
-    return this->publisher;
-}
-int Books::getCopies(){
-    return *(this->copies);
-}
- float Books::getPrice(){
-    cout << "from getPrice: "<< *price <<endl;
-    return *(this->price);
-}
-// function to buy a book. Check first for availble copies, then print sucessfull or not available.
-// if sucessfull print also the price of the book.
 void Books::buyBook(){
-   
-    cout <<"Get price =  "<< getPrice()<<endl;
-    cout <<"Get copies =  "<< getCopies()<<endl;
-
-    cout << "Enter Title Of Book: "<<endl;
-    cout << "Enter Author Of Book: "<<endl;
-    cout << "Enter Number Of Books to buy: "<<endl;
-    cout << endl;
-}
-// search function to search for books. If book is found print sucessfull and then print the details of the book.
-void Books::searchBook(){
-   
-    cout << "Enter Title Of Book: "<<endl;
-    cout << "Enter Author Of Book: "<<endl;
-    cout << endl;
-}
-// Show detail of the book. after asking for author name and title.
-// Then check if the author name and title exist, if it does print the rest of the info.
-void Books::bookDetail(){
-   
-    cout << "Enter Author Of Book: "<< getAuthorName();
-    cout << endl;
-}
-
-int main(){
-   // EntryNewBook books();
-    Books book1[arr_size];
-    Books book2;
-
-    int NrOfbooks;
+    string bookName, bookTitle;
+    int inStock;
+    bool nameSts, titleSts, stockSts;
     
-    cout <<"********** MENU **********" <<endl;
+    //cout << "Enter Number Of Books to buy: "<<endl;
+    cin.ignore();
+    cout << "Enter Author Of Book: "<<endl;
+    getline(cin, bookName);
+    cout << "Enter Title Of Book: "<<endl;
+    getline(cin, bookTitle);
+    cout <<"Enter Number Of Books to buy: "<<endl;
+    cin >> inStock;
+    nameSts  = searchAuthorname(bookName);
+    titleSts = searchTitlename(bookTitle);
+    stockSts = searchInStock(inStock);
+    cout<< "inStock passed on to search inStock: "<< inStock<<endl;
+    cin.ignore();  
+    
+}
+void Books::getUserInfo(){
+
+   
+ for ( int i = 0; i < NrOfbooks; i++)
+    {
+    cin.ignore();      // used to not get an ending loop caused by that cin leaves an end of line which is then read by getline().
+    cout<<"Enter Author Name: ";
+    getline(cin, name); Books::setAuthorName(name);
+    cout<<"Enter Title Name: " ;
+    getline(cin, title); Books::setTitleName(title);
+    cout<<"Enter Publisher Name: ";
+    getline(cin, publisher); Books::setPublisher(publisher);
+    cout<<"Enter Price: " ;
+    cin >> price; Books::setBookPrice(price);
+    cout << "\nSize in stock vector before: " << bookcopies.size()<<endl;
+    cout<<"Enter number of copies: " ;
+    cin >> copies; Books::setCopies(copies);
+    cout << "\nSize in stock vector after: " << bookcopies.size()<<endl;
+}
+
+}
+
+int main() {
+
+
+cout <<"********** MENU **********" <<endl;
     int choice;
     int exitNow = false;
+    Books bookEntry;
+    
 do{
-   
     cout << "1. Entry new book" <<endl;
     cout << "2. Buy a book" << endl;
     cout << "3. Search for a book" <<endl;
@@ -175,30 +170,23 @@ do{
     cout << "5. Exit program \n" <<endl;
     cout <<"Enter your choice: "; cin >> choice;
 
-    
     switch (choice)
     {
     case menu::New:
         cout <<"How many books to insert? \n" << endl;
-        cout <<"Enter your choice: "; cin >> NrOfbooks;
+        cout <<"Enter your choice: "; cin >> bookEntry.NrOfbooks;
         
-            if (NrOfbooks > 0)
+            if (bookEntry.NrOfbooks > 0)
             {
-                for ( int i = 0; i < NrOfbooks; i++)
+                for (int i = 0; i < bookEntry.NrOfbooks; i++)
                 {
-                    book1[i].getInputDisplay();
-                    cout << "Book[i]: " << i<<endl;
+                    bookEntry.getUserInfo();
                 }
-                
-                
+
             }else if (exitNow == false){cout << "Invalid input! Please try again.\n\n";}
             
         break;
-    case menu::Buy : book2.buyBook();
-        break;
-    case menu::Search : book2.searchBook();
-        break;
-    case menu::Details : book2.bookDetail();
+    case menu::Buy : bookEntry.buyBook();
         break;
     case menu::Exit :
         cout <<"Bye Bye!! \n" << endl;
@@ -211,7 +199,7 @@ do{
         break;
     }
 }while (!exitNow) ;
-    
-    return 0;
 
+    return 0;    
 }
+
