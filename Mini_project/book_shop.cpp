@@ -5,7 +5,6 @@
 
 using namespace std;
 
-#define v_size 50
 
 enum menu {
     New = 1, Buy = 2, Search = 3, Details = 4, Exit = 5
@@ -23,11 +22,7 @@ public:
     //constructors
     Books();
     ~Books();
-    vector<string> authornames;
-    vector<string> booktitles;
-    vector<string> publishernames;
-    vector<float> bookprices;
-    vector<int> bookcopies;
+
     //setter methods
     void setAuthorName(string name);
     void setTitleName(string title);
@@ -37,14 +32,15 @@ public:
    // void DisplayInfo();
     void getUserInfo();
     void buyBook();
-    bool searchBook(string &bookName);
+    void searchBook();
     void showDetails();
-    void printInfo();
+    void printBookDetail(vector<Books>::iterator show);
+    void editBook();
     //getter methods
     string getAuthorname();
     string getTitleName();
     
-    int getBookPrice(); 
+    void getBookCopies(vector<Books>::iterator bcopies); 
 // create a vector of Books objects and it iterator
     vector<Books> bookregister;
     vector<Books>::iterator it;
@@ -78,72 +74,61 @@ void Books::setBookPrice(float price){
 void Books::setCopies(int copies){
   this->copies = copies;
 }
-int Books::getBookPrice(){
-    cout << "Output of begin and end: ";
-    for (auto i = bookprices.begin(); i != bookprices.end(); ++i)
-        cout << *i << " ";
+void Books::getBookCopies(vector<Books>::iterator bcopies){
+    cout << "Avialable copies: ";
+    cout <<"Quantity = "<< bcopies->copies <<endl;
 }
-bool searchBook(string &bookName){
+void Books::printBookDetail(vector<Books>::iterator show){
+    
+    cout << "Author name:  " << show->name <<endl;
+    cout << "Title  name:  " << show->title <<endl;
+    cout << "Publisher name: "<< show->publisher<<endl;
+    cout << "Book price: " << show->price <<"$"<<endl;
+    cout << "Number of copies: " << show->copies<<endl;
+}
+void Books::editBook(){
+    string bookName, bookTitle, newName, newTitle, newPublisher, newPrice, newCopies;
+    cin.ignore();
+    cout << "Enter Author Of Book: "<<endl;
+    getline(cin, bookName);
+    cout << "Enter Title Of Book: "<<endl;
+    getline(cin, bookTitle);
+    // call the search function
+    for (it = bookregister.begin(); it != bookregister.end(); ++it)
+    {
+            if (bookName == (it->name) && bookTitle == (it->title))
+            {
+                cout <<"Book found successfully!"<< endl;
+                cout << "Enter Author name:  "<<endl;
+                getline(cin, newName);
+            }
+
+    }
+
+}
+void Books::searchBook(){
     Books Obj;
-    string _bookName = bookName;
-  //  string bookTitle = bookTitle;
-  //  int bookCopies = bookCopies;
-   /* 
-    auto itr = find_if(Obj.bookregister.begin(), Obj.bookregister.end(), [&_bookName](Books& Obj) {
-        cout <<"authorname is found!"<< endl;
-        return Obj.getAuthorname()  == _bookName;
-        });*/
-}
-/*
-bool Books::searchAuthorname(string bookname){
-   string _name;
-   _name = bookname;
-   if (find(authornames.begin(), authornames.end(), _name) != authornames.end()){
-        return true;
-   }
-   else {
-        cout<<"authorname is NOT found!"<<endl;
-        return false;
+    string bookName, bookTitle;
+    cin.ignore();
+    cout << "Enter Author Of Book: "<<endl;
+    getline(cin, bookName);
+    cout << "Enter Title Of Book: "<<endl;
+    getline(cin, bookTitle);
+    cout << "\n"<<endl;
+    for (it = bookregister.begin(); it != bookregister.end(); ++it)
+    {
+            if(bookName == (it->name) && bookTitle == (it->title)){
+                cout <<"Book found successfully! \n"<<endl;
+                cout << "Book details: "<< endl;
+                Obj.printBookDetail(it);
+                cout << "\n\n"<<endl;
+            }
     }
-   
+ 
 }
-bool Books::searchTitlename(string booktitle){
-    string _title;
-    _title = title;
-    if (find(booktitles.begin(), booktitles.end(), _title) != booktitles.end()){
-        cout <<"Title is found!"<< endl;
-        return true;
-   }
-   else {
-        cout<<"Title is NOT found!"<<endl;
-        return false;
-    }
-
-}
-bool Books::searchInStock(int inStock){
-    int _inStock;
-    _inStock = inStock;
-   // 
-    std::vector<int>::iterator it =(find(bookcopies.begin(), bookcopies.end(), _inStock) );
-    cout <<"the iterator: "<< (*it) <<endl;
-    cout << "\nSize in stock vector after: " << bookcopies[0]<<endl;
-
-
-    if(it == bookcopies.end()){
-        cout <<"inStock request recieved from buy function1: "<< _inStock<<endl;
-        cout <<"Available in stock!"<< endl;
-        int index = std::distance(bookcopies.begin(), it);
-        std::cout <<"Index of element in vector : "<<index<<std::endl;
-        return true;
-   }
-   else {cout <<"inStock request recieved from buy function2: "<< _inStock<<endl;
-        cout<<"NOT available in stock!"<<endl;
-        return false;
-    }
-}*/
 void Books::buyBook(){
     string bookName, bookTitle;
-    int inStock;
+    int quantity,inStock;
     Books Obj;
     cin.ignore();
     cout << "Enter Author Of Book: "<<endl;
@@ -151,26 +136,37 @@ void Books::buyBook(){
     cout << "Enter Title Of Book: "<<endl;
     getline(cin, bookTitle);
     cout <<"Enter Number Of Books to buy: "<<endl;
-    cin >> inStock;
+    cin >> quantity;
+    cout << "\n"<<endl;
     //Call the search function
-    auto itr = find_if(Obj.bookregister.begin(), Obj.bookregister.end(), [&bookName](Books& Obj) {
-        return Obj.getAuthorname()  == bookName;
-        });
-        if (itr != Obj.bookregister.end())
+    for (it = bookregister.begin(); it != bookregister.end(); ++it)
+    {
+        if (bookName == (it->name) && bookTitle == (it->title) && quantity <= (it->copies))
         {
-            auto index = distance(Obj.bookregister.begin(), itr);
-            cout <<"authorname is found!" << endl;
+            Obj.getBookCopies(it);
+            cout <<"Books bought successfull!"<<endl;
+            cout << "Amount: $." << quantity*(it->price)<<endl;
+            //details of available in stock. edit the object to deduct copies 
+            cout<<"Stock details: "<< endl;
+            inStock = (it->copies)-quantity;
+            Obj.setCopies(inStock);
+            cout << "Quantity left: " << inStock <<endl;
+            cout << "\n"<<endl;
 
         }
-        
-    cout<< "inStock passed on to search inStock: "<< inStock<<endl;
+        else if (quantity > (it->copies))
+        {
+            cout<<"Required copies not available"<<endl;
+            cout << "\n"<<endl;
 
-    
+        }
+    }
 }
 void Books::getUserInfo(){
     
     cin.ignore();      // used to not get an ending loop caused by that cin leaves an end of line which is then read by getline().
     cout<<"Enter Author Name: ";
+
     getline(cin, name); setAuthorName(name);
     cout<<"Enter Title Name: " ;
     getline(cin, title); setTitleName(title);
@@ -180,27 +176,21 @@ void Books::getUserInfo(){
     cin >> price; setBookPrice(price);
     cout<<"Enter number of copies: " ;
     cin >> copies; setCopies(copies);
-}
-void Books::printInfo(){
-    cout << "Author name:  " << name <<endl;
-    cout << "Title  name:  " << title <<endl;
-    cout << "Publisher name: "<< publisher<<endl;
-    cout << "Book price: " << price <<endl;
-    cout << "Number of copies: " << copies<<endl;
+    cin.ignore();
 }
 
 int main() {
 cout <<"\n\n********** MENU **********" <<endl;
     int choice;
     int exitNow = false;
-    Books bookEntry[0];
+    Books newBook;
     int NrOfbooks = 0;
     int j=0;
 do{
     cout << "1. Entry new book" <<endl;
-    cout << "2. Buy a book" << endl;
-    cout << "3. Search for a book" <<endl;
-    cout << "4. Show details of a book" <<endl;
+    cout << "2. Buy book" << endl;
+    cout << "3. Search for book" <<endl;
+    cout << "4. Edit details of book" <<endl;
     cout << "5. Exit program \n" <<endl;
     cout <<"Enter your choice: "; cin >> choice;
     switch (choice)
@@ -214,25 +204,18 @@ do{
                         for (int i = 0; i < NrOfbooks; i++)
                         {
                             bookEntry[i].getUserInfo();
-                            bookEntry[i].bookregister.push_back(bookEntry[i]);
-                            cout << "size of the book register vector: "<< bookEntry[i].bookregister.size()<<endl;
+                            newBook.bookregister.push_back(bookEntry[i]);
+                            cout << "size of the book register vector: "<< newBook.bookregister.size()<<endl;
                         }
 
                     }else if (exitNow == false){cout << "Invalid input! Please try again.\n\n";}
                 }
         break;
-    case menu::Buy : bookEntry[j].buyBook();
+    case menu::Buy : newBook.buyBook();
         break;
-    case menu::Search: cout<<"Search function"<<endl;
+    case menu::Search: newBook.searchBook();
         break;
-    case menu::Details: 
-                        cout << "\nSize of the vector: " << bookEntry[j].bookregister.size()<<endl;
-	              //      for ( it = bookEntry.bookregister.begin(); it != bookEntry.bookregister.end(); ++it ) {
-	                     // For each bookEntry, print out their info
-	               //     it->printInfo();
-
-	                  //   }
-                    
+    case menu::Details: newBook.editBook();   
         break;             
     case menu::Exit :
         cout <<"Bye Bye!! \n" << endl;
