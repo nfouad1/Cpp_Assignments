@@ -1,12 +1,9 @@
 #include <iostream>
-//#include <vector>
-//#include <string>
 #include <book.h>
 
 using namespace std;
 
 Books::Books(){
-    //    bookregister = "";
         name = "";
         title = "";
         publisher = "";
@@ -63,11 +60,10 @@ void Books::buyBook(){
             cout <<"Books bought successfull!"<<endl;
             cout << "Amount: $." << quantity*(it->price)<<endl;
             //details of available in stock. edit the object to deduct copies 
-            cout<<"Stock details: "<< endl;
             inStock = (it->copies)-quantity;
             // update the vector with remaining copies
             it->copies = inStock; 
-            cout << "Quantity left: " << inStock <<endl;
+            cout << "Copies left: " << inStock <<endl;
             cout << "\n"<<endl;
 
         }
@@ -82,13 +78,14 @@ void Books::editBook(){
     cout << "Enter Author Of Book: "<<endl;
     getline(cin, bookName);
     cout << "Enter Title Of Book: "<<endl;
-    getline(cin, bookTitle);
+    getline(cin, bookTitle); cout <<"\n";
     // call the search function
     for (it = bookregister.begin(); it != bookregister.end(); ++it)
     {
             if (bookName == (it->name) && bookTitle == (it->title))
             {
-                cout <<"Book found successfully!"<< endl;
+                cout <<"Book found successfully!\n"<< endl;
+                cout <<"Edit:"<<endl;
                 cout << "Enter Author name:  "<<endl;
                 getline(cin, newName);it->name = newName;
                 cout << "Enter title name: "<<endl;
@@ -99,6 +96,7 @@ void Books::editBook(){
                 cin >> newPrice; it->price = newPrice;
                 cout << "Enter number of copies: " <<endl;
                 cin >> newCopies; it->copies = newCopies;
+                cout<<"\n"<<endl;
                 cin.ignore();
             }
 

@@ -1,10 +1,5 @@
 #include <iostream>
 #include <book.h>
-//#include "getUserInfo.cpp"
-//#include "buyBook.cpp"
-//#include "searchBook.cpp"
-//#include "editBook.cpp"
-//#include "bookInfo.cpp"
 
 using namespace std;
 
@@ -35,7 +30,6 @@ do{
                         {
                             bookEntry[i].getUserInfo();
                             newBook.bookregister.push_back(bookEntry[i]);
-                            cout << "size of the book register vector: "<< newBook.bookregister.size()<<endl;
                         }
 
                     }else if (exitNow == false){cout << "Invalid input! Please try again.\n\n";}

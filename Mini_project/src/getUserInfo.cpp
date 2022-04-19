@@ -19,7 +19,8 @@ void Books::getUserInfo(){
     cin >> price; setBookPrice(price);
     cout<<"Enter number of copies: " ;
     cin >> copies; setCopies(copies);
-    cin.ignore();
+    cout<<"\n";
+   // cin.ignore();
 }
 string Books::getAuthorname(){return name;}
 string Books::getTitleName(){return title;}
@@ -39,6 +40,5 @@ void Books::setCopies(int copies){
   this->copies = copies;
 }
 void Books::getBookCopies(vector<Books>::iterator bcopies){
-    cout << "Avialable copies: ";
-    cout <<"Quantity = "<< bcopies->copies <<endl;
+    cout << "Avialable copies: "<< bcopies->copies <<endl;
 }
