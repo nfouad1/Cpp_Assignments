@@ -87,7 +87,9 @@ void Books::printBookDetail(vector<Books>::iterator show){
     cout << "Number of copies: " << show->copies<<endl;
 }
 void Books::editBook(){
-    string bookName, bookTitle, newName, newTitle, newPublisher, newPrice, newCopies;
+    string bookName, bookTitle, newName, newTitle, newPublisher;
+    int newCopies;
+    float newPrice;
     cin.ignore();
     cout << "Enter Author Of Book: "<<endl;
     getline(cin, bookName);
@@ -100,7 +102,16 @@ void Books::editBook(){
             {
                 cout <<"Book found successfully!"<< endl;
                 cout << "Enter Author name:  "<<endl;
-                getline(cin, newName);
+                getline(cin, newName);it->name = newName;
+                cout << "Enter title name: "<<endl;
+                getline(cin, newTitle); it->title = newTitle;
+                cout <<"Enter publisher name: "<<endl;
+                getline(cin, newPublisher); it->publisher = newPublisher;
+                cout <<"Enter book price: " <<endl;
+                cin >> newPrice; it->price = newPrice;
+                cout << "Enter number of copies: " <<endl;
+                cin >> newCopies; it->copies = newCopies;
+                cin.ignore();
             }
 
     }
@@ -108,6 +119,7 @@ void Books::editBook(){
 }
 void Books::searchBook(){
     Books Obj;
+
     string bookName, bookTitle;
     cin.ignore();
     cout << "Enter Author Of Book: "<<endl;
