@@ -1,10 +1,5 @@
 #include <iostream>
 #include <book.h>
-//#include "getUserInfo.cpp"
-//#include "buyBook.cpp"
-//#include "searchBook.cpp"
-//#include "editBook.cpp"
-//#include "bookInfo.cpp"
 
 using namespace std;
 
