@@ -20,7 +20,6 @@ void Books::getUserInfo(){
     cout<<"Enter number of copies: " ;
     cin >> copies; setCopies(copies);
     cout<<"\n";
-   // cin.ignore();
 }
 string Books::getAuthorname(){return name;}
 string Books::getTitleName(){return title;}

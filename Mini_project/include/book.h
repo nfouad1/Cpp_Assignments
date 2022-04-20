@@ -1,9 +1,9 @@
-#ifndef BOOK_H
-#define BOOK_H
+//#ifndef BOOK_H
+//#define BOOK_H
+#pragma once // dont include this header file multiple times.
 
 #include <vector>
 #include <string>
-#pragma once // dont include this header file multiple times.
 
 using namespace std;
 
@@ -44,4 +44,4 @@ public:
     vector<Books>::iterator it;
 };
 
-#endif 
+//#endif 
