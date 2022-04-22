@@ -1,0 +1,62 @@
+Containers:
+different between vector and deque[dek] is that the deque can expand the list in both direction.
+
+Associative container:
+Set() is an important
+Set() does not have indexed elements.
+
+
+When using lower and upper bound in Set(), make sure to know that the value you are searching for exist ontherwise user an if statement to check the return values.
+
+
+Maps:
+Stores the value in a map fasion.
+Maps defined like pair with a key and a value. the pair is an object.  the pair can be called throught the object pointer( ->).
+
+
+fstream:
+Ofstream - read from file
+ifstrem - write to file
+fstream - both read and write
+
+
+------------------------------------
+Embeded concepts
+
+Preprocessor directives:
+preprocessing (modifies the original program according to the directive that starts with '#') --> compilation(translate the prrogram infor a object file) --> linking (handles merging and make executable file.)
+
+macros (are any text replacements) eg. #define arr_size 5  or functions getmax(a,b) (if statement)
+Are used to save memory and if the arr is used alot in the code.
+macros are not recommenced to defualt debugging.
+
+inline function is a realfunction which is also a text replacement, so the variable are not store in the memory.
+it has the merit of macros and a merit of a normal function so the compiler with check for the types.
+
+
+#Pragma
+used to turn of the optimizer, start or end function before main.
+It depends on the complier.
+
+Polling vs Interrupt
+polling is just wainting until getting the result. not used alot.
+Interrip are used more.
+
+Reentrant:
+A function that does not used any global variable to be safe.
+Can not be interupted.
+
+Synchornous function and Asynchronous functions
+
+Callback functions:
+I give you a pointer to call be again.
+The the function call the other funtion and give the adress of the function.
+Callout is the normal function call
+
+---------------------------------
+
+8 4 2 1
+1 0 1 1
+----------> 1,2,3,8 och 11
+
+

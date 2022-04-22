@@ -1,0 +1,116 @@
+C++ - OOP main purpose is to handle relations between objects.
+-------------------
+CLasses:
+No allocation in the memory
+No initialization
+When objects are alloated memory space whenever they are created.
+the compiler put the memebrs of the class in the heap memory.
+the memeory size of the class memebers when they are alocated are the sum of all memebrs.
+
+Differens between class and structures: 
+by default classes has their memebrs private but structures are public.
+Structures are better to use when you dont have methods/functions as members.
+
+Member functions of a class: constructor and destructor
+Constructors has the same name as the class.
+Default constructor does not take any input/argument
+Paramerized constructor takes argument.
+Main purpose for constructors are to make initializations or call the function wihtout sending any data.
+
+When the constructor is out of scope the destructor is called if it has been defined in the class.
+The destructor is called by the compiler before the object is deleted by the compiler, like a notifier. If there is any clean task needed it can be alocated inside of the destructor body.
+
+The new key-word for dynamic memory allocation will call the destructor .
+Whe using dynamic memory allocation the best practice is to remove/ delete the allocated memory.
+
+
+This pointer have assess to all atribute of the current class.
+This can be used in non static functions.
+
+Encapsulation: like private members in a class. Not accessable outside of the class.
+Hides variables from other classes.
+
+
+Abstraction: hidiing details away from the user. Provides intefaces (setters/getters) for the outside world.
+
+Compisiton: class which includes other classes
+Main differens between compisiton and inheritance is that compisition has a relationship while inheritance is a relationship.
+
+Super class and derived class =  parent class and child class
+
+Inheritance class can only access public and protected memebrs from the base class. a copy of the memebers is done, so members in the parent/base class can not be changed from the derived/inherited class.
+The derived class is always bigger or equal in size compared to the base class.
+
+
+Friendship class or function: by default the class can access private members.one way binding, meaning the class or the function that is friend with the other class or function is one way. Where the key-word "friend" is that class/function have access to it class/function.
+
+------------------------------------------------------------------
+Memory:
+Stack memory is only used ofr function calls and local vairables.
+Heap used for Dynamic memory allocation.
+Heap is larger than stack.
+Static variables and global variables are stored in .bss due to that they will stay in the memory after the execution.
+Raw code are stored in .Text memory
+All the containters (vector, set, map, stack, deque, linkedlist....) are dynamic memory allocation
+
+
+
+-----------------------------
+Polymorphism:
+Means different forms for the same functions.
+Came to solve problems in inheritance.
+
+Polymorpism class is a class that is inheriting a virtual function.
+
+Pure virtual function is a function which must be modify by the derived class. Purpose of the pure virtual function is to force the developer to do implementation in the derived class.
+virtual function with final keyword means that the funtion can not be overriden.
+The type of the pointer effect its binding (which function to check for first, always the function which is in the type itself), and also effect its size in memory.
+Deduction/slizing mean that the pointer has a limitation and cant access some new implemetantion in the derived class.
+
+
+Abstract class  is a class defining a pure virtual function.Abstract class can not be instantiated and must be used as base classes only. We can not create object from abstract class.
+
+Diamond problem is that a method which is defined in the base class, two other dervied classed (a and b) from the base class, the third class derived c from the two other derived classes(a and b) is calling a the method which is in both of the derived classes (a and b). 
+
+Virtual inheritance: solves the diamond problem. 
+Adds a priority on which function marked as virtual should be used.
+
+Function OVerloading:
+same function with same name and same return type, but different argument (type or antal)
+
+Operator overloading:
+function to change an operator(+,-,* etc.) for exampel when you want to sum or multiply two objects.
+
+Static:
+Static mean I will stay in the memory. Stataic variable are stored in the static memory.If they are not initialzied, they are set to 0. They are initialized outside of the class.
+The static variables will still be in the memory even after they are out of scope. The idea with static variable is to make it a shared resource and be used by other functions.
+
+A class become abstract if it has at least one pure virtual function.
+
+Virtual destructor:
+
+-------------------------------------------------
+
+Open Recursion: The parents are using what is inside of the children. Using the this keyword on the function that is pure virtual in the parent class.
+
+Dynamic Dispatch:
+Distinguishing an object from an abstract data type at runtime.
+
+.------------------------------------------
+MINI-PROJCT
+Devided into different funcktions.
+Finnish function by function.
+
+
+----
+Hot to check stack overflow: by adding a parameter with value at the end of the program and see if you get the same number from the compiler, if not same number its stackoverflow.
+
+
+
+
+
+
+
+
+
+

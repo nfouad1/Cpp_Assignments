@@ -1,0 +1,26 @@
+Templates;
+
+Templates provides developers with the opprtunity of implemeting algorithms or defininf objects in classes independent of data types.
+Two types of templates: Functions and Class
+Purpose is to pass different data type to functions.
+
+
+Template classes:
+
+main difference betwene class and typename is telling that I will use more space due to that I can pass array not only on variable.
+if a function or a class uses one tmpelate variable then the fucntoion/class is considered as a template function/class
+
+The number of argumetns input is the desicion if template should be used or function overloading should be used.
+function overload allows you to pass different arguments while template need to have the same arguments nr.
+
+
+Vectors:
+Vector itself is a template. 
+takes alot of memory.
+Vectors are stored in stack but the elements are stored in the heap.
+
+differens between Sets and vectors: Sets can sort, abaility to remove dublicates .
+
+all iterators are pointers ex. s1.begin() will return to you a pointer.
+conditionary itary statement: return a>b ? true : false; (its an if sats in oneline)
+

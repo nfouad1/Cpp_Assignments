@@ -1,0 +1,25 @@
+Day2:
+static variables can be used in external functions.
+Pointers:
+Somedatatype *pointername = &Variablename
+Pointers purpose is to change on the original variables
+Use pointer to pass arrays to functions and to able to change the array.
+Danling pointer, points to a deleted memory location. To fix it assign the pointer a null or pointing to another memory location.
+Pointers have very limited operations to use.ex Ptr++, Ptr--
+void *ptr is pointing to null, then later can be used for other datatype pointer.
+Wild pointer has not been initialized to anything not even NULL.
+Segmentation fault accures when a pointer which does not ahve assigned address, you try to assign it a value ex 2. This is solved by using new ex *f = new int
+To avoid memory leakage pointers need to be deleted to free up some memory.
+
+Dynamically memmory allocation:
+New int
+Malloc: reserved memory, where you define the size of it and where to point.Dont hardcode the size.Use sizeof(int) instead.
+
+Day3:
+Structure: elements with in it can not be initialzed.
+To access the element within the structure using dot (.) ex. p1.x
+
+Union is like structures but the differens is that all the memebers of the union share the same memory e.g have the same address. The members can have different types but the biggest size will decide the size of the union.
+
+
+

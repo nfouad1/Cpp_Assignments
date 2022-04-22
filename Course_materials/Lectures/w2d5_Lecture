@@ -1,0 +1,13 @@
+Software Quality Assurance:
+code quality
+TEst the software with dynamic (test) and static testing (test source code).
+Static testing: code review, inspections, 
+Dynamic testing: function test non functional testing.
+
+
+
+Certain security technicues to ensure memory safety:
+stack canarises - to avoid stack overflow
+Non-executable memory space
+Address space layout randomization
+
