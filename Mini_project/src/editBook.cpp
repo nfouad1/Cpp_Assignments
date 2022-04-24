@@ -31,7 +31,6 @@ void Books::editBook(){
                 cin >> newPrice; it->price = newPrice;
                 cout << "Enter number of copies: " <<endl;
                 cin >> newCopies; it->copies = newCopies;
-              //  cout<<"\n"<<endl;
                 cin.ignore();
             }
 

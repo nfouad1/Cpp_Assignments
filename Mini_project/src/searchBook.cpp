@@ -21,7 +21,6 @@ void Books::searchBook(){
             if(bookName == (it->name) && bookTitle == (it->title)){
                 cout <<"Book found successfully! \n"<<endl;
                 Obj.printBookDetail(it);
-              //  cout << "\n"<<endl;
             }
     }
  
