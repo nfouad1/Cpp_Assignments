@@ -1,38 +1,57 @@
+
 #include <iostream>
+#include <limits>
 #include <book.h>
 
 using namespace std;
 
-
 int main() {
-cout <<"\n\n********** MENU **********" <<endl;
     int choice;
     int exitNow = false;
     Books newBook;
     int NrOfbooks = 0;
     int j=0;
+    
 do{
-    cout << "1. Entry new book" <<endl;
-    cout << "2. Buy book" << endl;
-    cout << "3. Search for book" <<endl;
-    cout << "4. Edit details of book" <<endl;
-    cout << "5. Exit program \n" <<endl;
-    cout <<"Enter your choice: "; cin >> choice;
+    //while loop is used to check for a valid user input. Only input that is accepted is integers. If non integer is entered 
+    //cin will be in a an error state and a message is displayed for the user. cin.clear() is used to clear the error and give the user retry.
+    newBook.displayMenu();
+    cout <<"Enter your choice: "; 
+    while(true){
+    if(cin >> choice){
+        cout <<" \n";
+        break;
+    }
+    else {cout<< "Enter a valid number!\n"; cin.clear();cin.ignore(numeric_limits<std::streamsize>::max(), '\n');}
+    }
     switch (choice)
     {
     case menu::New: {
                     cout <<"How many books to insert? \n" << endl;
-                    cout <<"Enter your choice: "; cin >> NrOfbooks;
+                    cout <<"Enter your choice: "; 
+                    while (true){
+                    if(cin >> NrOfbooks){
+                        cout<<"\n";
+                        break;
+                    }
+                    else {cout<< "Enter a valid number!\n"; cin.clear();cin.ignore(numeric_limits<std::streamsize>::max(), '\n');}
+                    }
                     Books bookEntry[NrOfbooks];
                     if (NrOfbooks > 0)
                     {
                         for (int i = 0; i < NrOfbooks; i++)
                         {
-                            bookEntry[i].getUserInfo();
+                            bookEntry[i].addBook(i);
                             newBook.bookregister.push_back(bookEntry[i]);
                         }
 
                     }else if (exitNow == false){cout << "Invalid input! Please try again.\n\n";}
+                    if (newBook.bookregister.size() == NrOfbooks)
+                    {
+                        cout <<"Book titles inserted into database: "<< newBook.bookregister.size()<<endl;
+                        cout <<"--------------------------------- \n";
+                    }
+                    
                 }
         break;
     case menu::Buy : newBook.buyBook();
@@ -55,4 +74,3 @@ do{
 
     return 0;    
 }
-

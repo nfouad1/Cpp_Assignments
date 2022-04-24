@@ -1,5 +1,6 @@
 
-#pragma once // dont include this header file multiple times.
+#ifndef FILE_H
+#define FILE_H
 
 #include <vector>
 #include <string>
@@ -17,29 +18,39 @@ private:
     float price;
     int copies;  
 public:
-    //constructors
-    Books();
-    ~Books();
     //setter methods
     void setAuthorName(string name);
     void setTitleName(string title);
     void setPublisher(string publisher);
     void setBookPrice(float price);
     void setCopies(int copies);
-   // void DisplayInfo();
-    void getUserInfo();
+    // Funtions
+    void addBook(int j);
     void buyBook();
     void searchBook();
-    void showDetails();
+   // void showDetails();
     void printBookDetail(vector<Books>::iterator show);
     void editBook();
+    void displayMenu();
     //getter methods
     string getAuthorname();
     string getTitleName();
     
     void getBookCopies(vector<Books>::iterator bcopies); 
-// create a vector of Books objects and it iterator
+// creating a vector of Books objects and it iterator
     vector<Books> bookregister;
     vector<Books>::iterator it;
+// default constructor to initialize the variables.
+    Books(){
+        name = "";
+        title = "";
+        publisher = "";
+        price = 0;
+        copies = 0;
+}
+
+
 };
 
+
+#endif
