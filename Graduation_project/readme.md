@@ -93,7 +93,7 @@ The following figure shows an overview of the flow diagram of EGS1.0.
 
 The following figure shows an overview of the sequence diagram of EGS1.0.
 
-![sequence_diagram_EGS_1_0](./documents/sequence_diagram_EGS_1_0.svg)
+![sequence_diagram_EGS_1_0](./documents/sequence_diagram_EGS_1_0.png)
 
 ## CAN classic vs CAN FD
 
