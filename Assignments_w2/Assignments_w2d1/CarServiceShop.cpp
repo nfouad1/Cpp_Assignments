@@ -35,22 +35,19 @@ class RecordForCarService {
         // To get the value from the data member.
         // implement date and time here
 
-        // default constructor
-     /*   RecordForCarService(){
-                    lastname = 0;
-                    firstname = 0;
-             for (int i = 0; i < arr_size; i++){
-                    serviceparts[i] = 0;
-                    servicetype[i] = 0;
-                    
-        }*/
-         // deconstructor
-       // ~RecordForCarService(){ delete [] RecordArray;}
-        int records;
-        string * RecordArray;
+      //  int records;
+      //  string * RecordArray;
+      RecordForCarService(){
+          string *pMethod = new string;
+      }
+        int records = 0;
+        
+        string* RecordArray = new string[records];
         void getinput();
         void display();
-        void setFirstName(string firstname){this->firstname = firstname;  }
+        
+        void setFirstName(string firstname){
+           this->firstname  = firstname;  }
         void setLastName(string lasttname){ this->lastname = lastname;  }
         void setPayment(string pMethod){ this->pMethod = pMethod; }
         void setServiceType(string servicetype[arr_size])
@@ -68,6 +65,7 @@ class RecordForCarService {
             }
            
         }
+        
         string getFullName(){ return this-> firstname + " " + lastname; }
         string getPayment(){ return this->pMethod;}
         string getServiceType()
@@ -91,21 +89,25 @@ class RecordForCarService {
 
 void RecordForCarService::getinput() {
         
-        string fname;
+        int count = 0;
             cout << "Number of records to be inserted: \n";
             cin >> records;
-            RecordArray = new string [records];
-        
-            for (int i = 0; i < records; i++){
+         //   string* RecordArray = new string[records];
+         //   while (count < records)
+          //  {
+            // (int i = 0; i < records; i++){
                 cout << "Enter your firstname: "; cin >> firstname; setFirstName(firstname);
+           //     RecordArray[count] = firstname;
                 cout << endl;
                 cout << "Enter your lasttname: "; cin >> lastname; setLastName(lastname);
+            //    RecordArray[count] = lastname;
                 cout << endl;
                 cout << "Kind of service: ";
                 for (int  i = 0; i < arr_size; i++)
                 {
                     cout << "Service type #"<< i+1 <<": "<< endl;
                     cin >> servicetype[i]; 
+                //    RecordArray[count] = servicetype[i];
                 };
                 //setServiceType(servicetype[]);
                 cout << endl;
@@ -114,20 +116,29 @@ void RecordForCarService::getinput() {
                 {
                     cout << "service part: "<< i+1 <<": "<< endl;
                     cin >> serviceparts[i]; 
+                //    RecordArray[count] = serviceparts[i];
                 };
                // setServiceParts(serviceparts[i]);
                 cout << endl;
                 cout << "Payment method:  Cash or Creditcard: "<<endl;
                 cin >> pMethod; setPayment(pMethod);
+              //  RecordArray[count] = pMethod;
                 cout << endl;
-            }
+
+                count ++;
+          //  }
 };
  void RecordForCarService::display(){
             RecordForCarService Obj;
             
             time_t t = time(0);
             tm* now = localtime(&t);
-
+            for (int i = 0; i < records; i++)
+             {
+                cout<<"From the records database: "<< Obj.RecordArray[i] <<endl;
+             }
+    
+         //   delete [] RecordArray;
             cout << "Details for booked services: " <<endl;
             cout <<"Fullname: "<< getFullName(); 
             cout << endl;
@@ -145,13 +156,13 @@ int main (){
 
     RecordForCarService service;
     int choice;    
-
     // as long as the user want to put in informations. give also an exit option.
     while (true){     
-        
+        cout << "************WELCOME TO THE CAR SERVICE SHOP************"<<endl;
         cout <<"1. Enter service records"<< endl; cout << "2. Se details of the records."<<endl; cout << "3. Exit the program."<< endl;
         cin >> choice;
         if (choice == 1){
+            
                 service.getinput();
                 
         } else if (choice == 2)
@@ -163,14 +174,6 @@ int main (){
             {
             return 0;
             }
-
-    
-  //  service_info::~service_info(){
-        //delete the arrays allocated in the heap
-   //     delete [] parts;
-    //    delete [] firstname;
-   //     delete [] lastname;
-   //     delete [] date;
     }
    return 0;
 }

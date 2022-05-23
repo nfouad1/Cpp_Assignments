@@ -1,0 +1,23 @@
+W9d1
+------
+C++ syntax : &&
+
+&& means a temporary value.
+lvalue = location value, you can get the adress of / the reference of it
+rvalue = everyhting thats not l value also mean temporary value
+
+Move semantic are good when working with pointers, when you working in dynamic memory.
+swallow copy is using move semantic. e.g moving the address for the variable.
+
+Smart pointers
+------------------
+unique poniters: are a wrapper around a normal pointer. They are deleted by the destructor of the unique pointer.
+only one copy can exist
+unique pointers need to be moved (&& / std::move) to be able to work with them.
+
+sharedpointer: pointer shared between different objects, it knows how many is using it. a referens is counting each time an objects get a copy.
+It get deleted once the reference count is 0.
+its thread safe.
+When shared pointer is used pass it with reference.
+
+

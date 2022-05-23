@@ -1,0 +1,32 @@
+Build d1
+------------------
+static linking and dynamic linking. The different between them is that static lining is copying and mering the source code and library files and creates the executable.
+The Dynamic linking is done in runtime, and only have the reference of the library files. So no need to recomplie and relinking.
+
+Overview:
+(module.c/.h)->Preprocessor (module.pre) - >Compiler (module.obj) -> Linker -> .exe
+
+Name Mangling: the compiler is giving any funtion another name. Is this the reason function overloading is not possible in C, but possible in C++.
+
+extern keyowrd: used to see external function(cpp) in other function (cpp).Changing the scope for variables/functions.
+
+day2
+...............
+Gtest
+.....
+Framework for test
+Have a main value that runs all the test and returns the value.
+
+-l linker to gtest. 
+
+
+non fatial assert: Expect_EQ
+fatal asser: Assert_true
+
+Assert_STREQ : when used with pointers it checkes with dereferencing .
+
+Predicate: 
+
+
+Test stund: not using the real stuff.
+

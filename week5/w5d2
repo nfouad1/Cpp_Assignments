@@ -1,0 +1,20 @@
+W5d2
+------
+In linux moudles are the drivers for kernels
+VCAN:
+ip link  - interface to configuration
+add a device: add dev vcan0 type vcan (this is like the canalyzer device)
+
+man ip link - show manual/help
+
+SocketCAN is like a file, open, write, read , close. To open the com. read and write and the close the com.
+To close the socket, since the destructor will do that it contains the close.(according to the example shown in lecture)
+Whe socket is open a fd is reacieved.
+ioctrl - setting up a can.
+
+---
+shared object in unix .so in windows dll.
+export LD_LIBRARY_PATH+=.  - to find path for the shared object.
+
+
+
