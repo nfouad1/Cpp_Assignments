@@ -1,0 +1,9 @@
+
+
+		Review Checklist
+		
+		*Try to run the code and make sure it runs and performs what it is supposed to do.
+		*Check g-test results.
+		*Make sure unit tests are covering all the implementation.
+		*Well written code: good design and good optimization efforts.
+		*Is the code written according to Google style. 

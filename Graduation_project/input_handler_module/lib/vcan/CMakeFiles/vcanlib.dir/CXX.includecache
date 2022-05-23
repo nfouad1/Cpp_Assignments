@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../lib/vcan/include/socketcan.hpp
+string
+-
+linux/can.h
+-
+
+/home/nfouad1/C++ BootCamp/projects/Ramon_Engine_Gearbox_simulator/lib/vcan/src/socketcan.cpp
+socketcan.hpp
+/home/nfouad1/C++ BootCamp/projects/Ramon_Engine_Gearbox_simulator/lib/vcan/src/socketcan.hpp
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+unistd.h
+-
+net/if.h
+-
+sys/ioctl.h
+-
+sys/socket.h
+-
+linux/can/raw.h
+-
+

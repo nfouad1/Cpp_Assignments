@@ -8,3 +8,6 @@ file(GLOB_RECURSE SRC_FILES src/*.cpp)
 add_executable(bookshop main.cpp ${SRC_FILES})
 
 target_include_directories(bookshop PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(${PROJECT_NAME} gtest_main)
+add_subdirectory(test)
+add_subdirectory(lib/googletest)
