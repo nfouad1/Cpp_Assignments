@@ -126,5 +126,20 @@ In order to run and compile this program a compiler and an IDE needs to be insta
 
 The EGS application can be downloaded from GitHub from [here](git@github.com:TaycirLouati/Ramon_Engine_Gearbox_simulator.git).
 
-CMake 3.10 (or a later version) is also required to be installed in order to build the files as a complete program. 
+CMake 3.10 (or a later version) is also required to be installed in order to build the files as a complete program.  
 
+## Setting up virual CAN bus  
+
+CAN:
+sudo modprobe vcan
+sudo ip link add dev vcan0 type vcan
+sudo ip link set up vcan0
+sudo ip link show vcan0
+
+VCAN0 from inputhandler to Emulator and  VCAN1 from emulator to Interface.  
+
+## Running the applications  
+Being in build folder and in respective executable folder run  
+./InputHandlerModuleApp
+./EngineEmulatorModuleApp  
+./avic -c vcan1  
